@@ -653,14 +653,15 @@ WandExport MagickBooleanType MagickAnimateImages(MagickWand *wand,
   const char *server_name)
 {
   MagickBooleanType
-    status;
+    status = MagickFalse;
 
   assert(wand != (MagickWand *) NULL);
   assert(wand->signature == MagickWandSignature);
   if (wand->debug != MagickFalse)
     (void) LogMagickEvent(WandEvent,GetMagickModule(),"%s",wand->name);
   (void) CloneString(&wand->image_info->server_name,server_name);
-  status=AnimateImages(wand->image_info,wand->images,wand->exception);
+// Remove function call to prevent linker error on linux 
+//status=AnimateImages(wand->image_info,wand->images,wand->exception);
   return(status);
 }
 
